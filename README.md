@@ -283,23 +283,30 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
 
 ### ⚠️ Implementaciones Placeholder (Funcionales pero no Productivas)
 
-| Componente | Estado Actual | Sprint Objetivo |
-|------------|---------------|-----------------|
-| **XAdES Signer** | Placeholder XML | Sprint 3 - Firma real |
-| **AEAT Transport** | Respuestas simuladas | Sprint 4 - SOAP+mTLS real |
-| **QR Generator** | PNG simulado | Sprint 6 - QRCoder real |
-| **Persistence** | In-memory | Sprint 5 - PostgreSQL + SQLite |
+| Componente | Estado Actual | Sprint Objetivo | Estado |
+|------------|---------------|-----------------|---------|
+| **XAdES Signer** | Placeholder XML | Sprint 3 - Firma real | ⏳ Pendiente |
+| **AEAT Transport** | Respuestas simuladas | Sprint 4 - SOAP+mTLS real | ⏳ Pendiente |
+| **Persistence** | In-memory | Sprint 5 - PostgreSQL + SQLite | ⏳ Pendiente |
+| **QR Generator** | PNG simulado | Sprint 6 - QRCoder real | ⏳ Pendiente |
+| **Unit Tests** | No implementados | Sprint 7 - Tests unitarios | ⏳ Pendiente |
+| **Integration Tests** | No implementados | Sprint 8 - Tests E2E | ⏳ Pendiente |
+| **Production Setup** | No implementado | Sprint 9 - Despliegue | ⏳ Pendiente |
+| **Performance Tools** | No implementados | Sprint 10 - Optimización | ⏳ Pendiente |
 
 ### ❌ Pendiente de Implementar
 
-| Funcionalidad | Sprint | Prioridad |
-|---------------|--------|-----------|
-| XML F1 Generation | Sprint 2 | 🔴 Alta |
-| Business Validations | Sprint 2 | 🔴 Alta |
-| Real Certificate Handling | Sprint 3 | 🟠 Media |
-| Database Migrations | Sprint 5 | 🟠 Media |
-| Unit Tests | Sprint 7 | 🟡 Baja |
-| Integration Tests | Sprint 8 | 🟡 Baja |
+| Funcionalidad | Sprint | Prioridad | Estado |
+|---------------|--------|-----------|---------|
+| **XML F1 Generation** | Sprint 2 | 🔴 Alta | 🚧 En desarrollo |
+| **Business Validations** | Sprint 2 | 🔴 Alta | 🚧 En desarrollo |
+| **Real Certificate Handling** | Sprint 3 | 🟠 Media | ⏳ Pendiente |
+| **Database Migrations** | Sprint 5 | 🟠 Media | ⏳ Pendiente |
+| **QR Generation Real** | Sprint 6 | 🟠 Media | ⏳ Pendiente |
+| **Unit Tests** | Sprint 7 | 🟡 Baja | ⏳ Pendiente |
+| **Integration Tests** | Sprint 8 | 🟡 Baja | ⏳ Pendiente |
+| **Production Deployment** | Sprint 9 | 🟡 Baja | ⏳ Pendiente |
+| **Performance Optimization** | Sprint 10 | 🟡 Baja | ⏳ Pendiente |
 
 ## 🔄 Roadmap de Desarrollo
 
@@ -319,22 +326,161 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
   - [ ] Campos obligatorios
 
 ### 📅 Sprint 3 - Firma XAdES-EPES
-- [ ] Implementación XadesSigner real
-- [ ] Soporte PFX y Windows Store
-- [ ] Políticas EPES según especificación
-- [ ] Tests de validación de firma
+**Objetivo**: Implementar firma electrónica XAdES-EPES real para cumplir requisitos legales
+
+- [ ] **XadesSigner real**
+  - [ ] Integración con certificados PFX
+  - [ ] Soporte Windows Store
+  - [ ] Políticas EPES según especificación AEAT
+- [ ] **Gestión de certificados**
+  - [ ] Rotación automática
+  - [ ] Validación de expiración
+  - [ ] Almacenamiento seguro
+- [ ] **Tests de validación**
+  - [ ] Verificación de firma
+  - [ ] Tests de integridad
 
 ### 📅 Sprint 4 - AEAT SOAP+mTLS  
-- [ ] Cliente SOAP desde WSDL
-- [ ] mTLS con certificados cliente
-- [ ] Mapeo de respuestas y errores AEAT
-- [ ] Idempotencia por clave natural
+**Objetivo**: Conectar con el sistema real de Veri*Factu de la AEAT
+
+- [ ] **Cliente SOAP real**
+  - [ ] Generación desde WSDL oficial
+  - [ ] Mapeo de respuestas y errores AEAT
+  - [ ] Manejo de timeouts y reintentos
+- [ ] **Mutual TLS (mTLS)**
+  - [ ] Certificados cliente para autenticación
+  - [ ] Configuración de seguridad
+  - [ ] Validación de certificados servidor
+- [ ] **Idempotencia**
+  - [ ] Control por clave natural
+  - [ ] Prevención de duplicados
 
 ### 📅 Sprint 5 - Persistencia Completa
-- [ ] EF Core + PostgreSQL para API
-- [ ] SQLite para Agent
-- [ ] Esquema multi-tenant
-- [ ] Migraciones automáticas
+**Objetivo**: Sistema de base de datos robusto y multi-tenant
+
+- [ ] **Entity Framework Core**
+  - [ ] Esquema multi-tenant
+  - [ ] Migraciones automáticas
+  - [ ] Connection pooling
+- [ ] **Bases de datos**
+  - [ ] PostgreSQL para API (producción)
+  - [ ] SQLite para Agent (local)
+  - [ ] Backup y recuperación
+- [ ] **Performance**
+  - [ ] Índices optimizados
+  - [ ] Queries eficientes
+  - [ ] Monitoreo de performance
+
+### 📅 Sprint 6 - Generación QR Real
+**Objetivo**: Códigos QR funcionales para validación de facturas
+
+- [ ] **Integración QRCoder**
+  - [ ] Generación PNG real
+  - [ ] Configuración de tamaño y calidad
+  - [ ] Validación de códigos generados
+- [ ] **URLs de validación**
+  - [ ] Integración con sistema AEAT
+  - [ ] Redirección correcta
+  - [ ] Manejo de errores
+
+### 📅 Sprint 7 - Tests Unitarios
+**Objetivo**: Cobertura de tests para garantizar calidad del código
+
+- [ ] **Tests por componente**
+  - [ ] Domain models y servicios
+  - [ ] API controllers
+  - [ ] Agent services
+- [ ] **Mocks y stubs**
+  - [ ] Simulación de AEAT
+  - [ ] Simulación de certificados
+  - [ ] Simulación de base de datos
+- [ ] **Cobertura de código**
+  - [ ] Mínimo 80% de cobertura
+  - [ ] Tests de casos edge
+  - [ ] Tests de performance
+
+### 📅 Sprint 8 - Tests de Integración
+**Objetivo**: Validar el sistema completo en entornos reales
+
+- [ ] **Tests E2E**
+  - [ ] Flujo completo: Agent → API → AEAT
+  - [ ] Casos de error y recuperación
+  - [ ] Tests de carga
+- [ ] **Entornos de testing**
+  - [ ] Pre-producción AEAT
+  - [ ] Certificados de testing
+  - [ ] Base de datos de pruebas
+- [ ] **Monitoreo**
+  - [ ] Métricas de performance
+  - [ ] Logs estructurados
+  - [ ] Alertas automáticas
+
+### 📅 Sprint 9 - Producción y Despliegue
+**Objetivo**: Sistema listo para producción con monitoreo completo
+
+- [ ] **Despliegue**
+  - [ ] Docker containers
+  - [ ] CI/CD pipeline
+  - [ ] Configuración de producción
+- [ ] **Monitoreo**
+  - [ ] Health checks avanzados
+  - [ ] Métricas de negocio
+  - [ ] Alertas proactivas
+- [ ] **Documentación**
+  - [ ] Manual de usuario
+  - [ ] Manual técnico
+  - [ ] Guías de troubleshooting
+
+### 📅 Sprint 10 - Optimización y Escalabilidad
+**Objetivo**: Sistema optimizado para múltiples clientes y alto volumen
+
+- [ ] **Performance**
+  - [ ] Caching inteligente
+  - [ ] Batch processing
+  - [ ] Async/await optimizado
+- [ ] **Escalabilidad**
+  - [ ] Load balancing
+  - [ ] Microservicios
+  - [ ] Message queues
+- [ ] **Seguridad avanzada**
+  - [ ] Rate limiting
+  - [ ] Audit logging
+  - [ ] Penetration testing
+
+## 📊 Cronograma de Desarrollo
+
+### 🗓️ Estimación de Tiempo por Sprint
+
+| Sprint | Duración Estimada | Objetivo Principal | Estado |
+|--------|-------------------|-------------------|---------|
+| **Sprint 0** | ✅ Completado | Estructura del proyecto | ✅ 100% |
+| **Sprint 1** | ✅ Completado | Sistema básico funcional | ✅ 100% |
+| **Sprint 2** | 2-3 semanas | Persistencia + XML F1 | 🚧 En desarrollo |
+| **Sprint 3** | 2-3 semanas | Firma XAdES-EPES | ⏳ Pendiente |
+| **Sprint 4** | 3-4 semanas | Conexión AEAT real | ⏳ Pendiente |
+| **Sprint 5** | 2-3 semanas | Base de datos completa | ⏳ Pendiente |
+| **Sprint 6** | 1-2 semanas | QR real | ⏳ Pendiente |
+| **Sprint 7** | 2-3 semanas | Tests unitarios | ⏳ Pendiente |
+| **Sprint 8** | 3-4 semanas | Tests integración | ⏳ Pendiente |
+| **Sprint 9** | 2-3 semanas | Producción | ⏳ Pendiente |
+| **Sprint 10** | 3-4 semanas | Optimización | ⏳ Pendiente |
+
+### 🎯 **Total Estimado: 20-30 semanas**
+
+### 🔄 **Dependencias Críticas**
+
+```
+Sprint 2 (Base) → Sprint 3 (Firma) → Sprint 4 (AEAT)
+     ↓                    ↓              ↓
+Sprint 5 (BD) → Sprint 6 (QR) → Sprint 7-8 (Tests) → Sprint 9-10 (Prod)
+```
+
+### 🚨 **Sprints Críticos para Producción**
+
+- **Sprint 2**: Base para todo lo demás
+- **Sprint 3**: Requisito legal obligatorio  
+- **Sprint 4**: Conexión real con AEAT
+- **Sprint 5**: Robustez del sistema
 
 ## 📋 Testing y Validación
 
@@ -432,11 +578,12 @@ INFO: QR generated at C:\NioxVF\qr\A00001.png
 
 - **Proyecto**: NioxVF - Conector Veri*Factu
 - **Contacto**: José Condolo (NIOXTEC)  
-- **Estado**: Sprint 1 Completado ✅
+- **Estado**: Sprint 1 Completado ✅ / 10 Sprints Planificados 📋
 - **Próximo milestone**: Sprint 2 - XML F1 + Persistencia
+- **Roadmap completo**: 10 Sprints (20-30 semanas estimadas)
 
 ---
 
 **NioxVF es un conector independiente para Veri*Factu. No es un producto oficial de la AEAT.**
 
-*Última actualización: Diciembre 2024*
+*Última actualización: Diciembre 2024 - Roadmap completo con 10 Sprints*
