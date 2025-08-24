@@ -1,0 +1,17 @@
+{
+  "sellerNif": "B00000000",
+  "sellerName": "Cafetería Demo NIOXTEC",
+  "series": "A",
+  "number": "00001",
+  "issueDate": "2025-08-24T12:00:00",
+  "taxes": [
+    {
+      "taxBase": 8.26,
+      "taxRate": 21.0,
+      "taxAmount": 1.74,
+      "taxType": "IVA"
+    }
+  ],
+  "text": "Venta mostrador - Café con tostada",
+  "type": "F1"
+}
