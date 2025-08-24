@@ -335,6 +335,29 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
 - [ ] SQLite para Agent
 - [ ] Esquema multi-tenant
 - [ ] Migraciones automáticas
+ ### 📅 Sprint 6 - QR real + Integración Aronium
+- [ ] QRCoder (PNG) con payload oficial
+- [ ] Plantilla de ticket Aronium con imagen QR
+- [ ] Lector real de BD/export de Aronium
+- [ ] Validación visual y de URL de verificación
+
+### 📅 Sprint 7 - Observabilidad & Hardening
+- [ ] Serilog + sinks y paneles básicos
+- [ ] HealthChecks y /metrics operativos
+- [ ] Rate limiting, retries y circuit breakers
+- [ ] Gestión segura de secretos y certificados (rotación)
+
+### 📅 Sprint 8 - UAT / Preproducción AEAT
+- [ ] Casos: IVA 0/10/21, recargo y cancelaciones
+- [ ] Tests end-to-end en entorno Pre de AEAT
+- [ ] Manual de soporte y troubleshooting
+- [ ]Verificación de idempotencia y colas
+
+📅 Sprint 9 - Producción (Go-Live)
+- [ ] Certificados reales y endpoints de Producción
+- [ ] Monitorización 24/7 y alertas
+- [ ] Onboarding de tenants/clientes
+- [ ] Plan de rollback y soporte inicial
 
 ## 📋 Testing y Validación
 
