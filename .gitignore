@@ -143,3 +143,23 @@ C:/NioxVF/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# NioxVF Project Specific Ignores
+
+# Simulation and Testing Directories
+Temp/
+*.tmp
+*.temp
+
+# IDE and Editor History
+.history/
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs and Output Files
+logs/
+*.log
+*.out
