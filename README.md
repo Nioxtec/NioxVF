@@ -1,18 +1,35 @@
 # NioxVF — Conector Veri*Factu
 ### Estado Actual del Proyecto - Diciembre 2024
 
-![.NET](https://img.shields.io/badge/.NET-8.0-blue)
+![.NET](https://img.shields.io/badge/.NET-8.0.0-blue)
 ![License](https://img.shields.io/badge/license-Proprietary-red)
-![Status](https://img.shields.io/badge/status-Sprint%201%20Completado-green)
+![Status](https://img.shields.io/badge/status-Sprint%202%20En%20Desarrollo-orange)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
 
 **NioxVF** es un conector multi-tenant para el sistema Veri*Factu de la AEAT, diseñado para integrarse con TPVs Aronium y proporcionar un servicio completo de facturación electrónica.
+
+## ⚠️ Requisitos del Sistema
+
+### **Versión de .NET Requerida**
+- **.NET 8.0.0** (exactamente esta versión)
+- No compatible con .NET 9.x ni versiones anteriores
+- Verificar instalación: `dotnet --version`
 
 ## 📊 Estado Actual del Desarrollo
 
 ### ✅ COMPLETADO - Sprint 0 & 1 (100%)
 
 El proyecto tiene implementado completamente el Sprint 1 según la especificación funcional original. **La solución compila sin errores** y está lista para producir un MVP funcional.
+
+### 🚀 EN DESARROLLO - Sprint 2 (30%)
+
+**Persistencia SQLite y Control de Concurrencia** - Actualmente en desarrollo por Angel (Backend & Persistencia).
+
+**Progreso actual:**
+- ✅ **NioxVF.Persistence**: Interfaces y entidades completadas (100%)
+- ⏳ **NioxVF.Persistence.Sqlite**: Pendiente de implementación (0%)
+- ⏳ **Control de concurrencia**: Pendiente de implementación (0%)
+- ⏳ **Migraciones**: Pendiente de implementación (0%)
 
 ### 🏗️ Arquitectura Implementada
 
@@ -97,6 +114,168 @@ El proyecto tiene implementado completamente el Sprint 1 según la especificaci�
 3. ✅ Enviar a API con mode "sign-and-send"
 4. ✅ Procesar respuesta y generar QR PNG
 5. ✅ Mover archivo a processed/failed según resultado
+
+---
+
+## 🚀 SPRINT 2 - Persistencia SQLite (30% Completado)
+
+### 📊 Progreso General del Sprint 2
+
+**Estado:** En desarrollo - Rama `feature/sqlite-repository`  
+**Responsable:** Angel - Backend & Persistencia  
+**Fecha inicio:** Diciembre 2024  
+**Progreso actual:** 3/10 tareas completadas (30%)
+
+### ✅ TAREAS COMPLETADAS
+
+#### ✅ **TAREA 1: Configurar NioxVF.Persistence (100%)**
+- ✅ **1.1 Configurar Dependencias del Proyecto**
+  - ✅ Agregar referencia a NioxVF.Domain
+  - ✅ Agregar Entity Framework Core 9.0.8
+  - ✅ Agregar Entity Framework Core Tools
+  - ✅ Agregar Entity Framework Core Design
+
+- ✅ **1.2 Limpiar y Preparar Estructura**
+  - ✅ Eliminar Class1.cs del proyecto Persistence
+  - ✅ Crear carpeta `Interfaces/`
+  - ✅ Crear carpeta `Entities/`
+  - ✅ Crear carpeta `Entities/Base/`
+  - ✅ Crear carpeta `Services/`
+
+- ✅ **1.3 Verificar Configuración**
+  - ✅ Compilar proyecto sin errores
+  - ✅ Verificar referencias correctas
+
+#### ✅ **TAREA 2: Definir Interfaces de Repositorio (100%)**
+- ✅ **2.1 Crear Interfaz Base IRepository<T>**
+  - ✅ Métodos CRUD básicos: GetByIdAsync, GetAllAsync, AddAsync, UpdateAsync, DeleteAsync, ExistsAsync
+  - ✅ Métodos de búsqueda: FindAsync, FirstOrDefaultAsync
+  - ✅ Documentación XML completa
+
+- ✅ **2.2 Crear IInvoiceRepository**
+  - ✅ Heredar de IRepository<InvoiceEntity>
+  - ✅ Métodos específicos: GetBySeriesAndNumberAsync, GetBySellerAsync, GetByDateRangeAsync, GetLastNumberInSeriesAsync
+  - ✅ Documentación XML completa
+
+- ✅ **2.3 Crear IHashChainRepository**
+  - ✅ Heredar de IRepository<HashChainEntity>
+  - ✅ Métodos específicos: GetPreviousHashAsync, UpdateChainAsync, GetChainBySellerAsync
+  - ✅ Documentación XML completa
+
+- ✅ **2.4 Crear ISeriesLockRepository**
+  - ✅ Heredar de IRepository<SeriesLockEntity>
+  - ✅ Métodos específicos: TryAcquireLockAsync, ReleaseLockAsync, IsLockedAsync, CleanupExpiredLocksAsync
+  - ✅ Documentación XML completa
+
+#### ✅ **TAREA 3: Crear Entidades de Dominio para Persistencia (100%)**
+- ✅ **3.1 Crear Entidad Base AuditEntity**
+  - ✅ Propiedades de auditoría: Id, CreatedAt, UpdatedAt, CreatedBy, UpdatedBy
+  - ✅ Documentación XML completa
+
+- ✅ **3.2 Crear InvoiceEntity**
+  - ✅ Heredar de AuditEntity
+  - ✅ Mapear propiedades de InvoiceSimple: SellerNif, SellerName, Series, Number, IssueDate, etc.
+  - ✅ Navegación a TaxItems implementada
+  - ✅ Propiedades calculadas: TotalTaxBase, TotalTaxAmount, TotalSurcharge, Total
+  - ✅ Documentación XML completa
+
+- ✅ **3.3 Crear TaxItemEntity**
+  - ✅ Heredar de AuditEntity
+  - ✅ Propiedades de impuestos: TaxBase, TaxRate, TaxAmount, SurchargeRate, SurchargeAmount, TaxType
+  - ✅ Navegación a Invoice implementada
+  - ✅ Documentación XML completa
+
+- ✅ **3.4 Crear HashChainEntity**
+  - ✅ Heredar de AuditEntity
+  - ✅ Propiedades para cadena de hashes: SellerNif, Series, CurrentHash, PreviousHash, LastUpdated
+  - ✅ Documentación XML completa
+
+- ✅ **3.5 Crear SeriesLockEntity**
+  - ✅ Heredar de AuditEntity
+  - ✅ Propiedades para control de concurrencia: SellerNif, Series, LockId, AcquiredAt, ExpiresAt, IsActive
+  - ✅ Documentación XML completa
+
+### ⏳ TAREAS PENDIENTES
+
+#### ⏳ **TAREA 4: Configurar Entity Framework Core (0%)**
+- [ ] **4.1 Crear DbContext Base**
+  - [ ] Crear archivo `NioxVF.Persistence/Context/NioxVFDbContext.cs`
+  - [ ] Definir DbSets para todas las entidades
+  - [ ] Configurar OnModelCreating
+  - [ ] Configurar OnConfiguring para logging
+
+- [ ] **4.2 Crear Configuraciones de Entidades**
+  - [ ] InvoiceEntityConfiguration
+  - [ ] TaxItemEntityConfiguration
+  - [ ] HashChainEntityConfiguration
+  - [ ] SeriesLockEntityConfiguration
+
+#### ⏳ **TAREA 5: Crear Proyecto NioxVF.Persistence.Sqlite (0%)**
+- [ ] **5.1 Crear Proyecto SQLite**
+  - [ ] Crear directorio `NioxVF.Persistence.Sqlite/`
+  - [ ] Crear archivo `NioxVF.Persistence.Sqlite.csproj`
+  - [ ] Configurar dependencias SQLite
+
+- [ ] **5.2 Crear SqliteDbContext**
+  - [ ] Heredar de NioxVFDbContext
+  - [ ] Configurar OnConfiguring para SQLite
+  - [ ] Configurar cadena de conexión
+
+#### ⏳ **TAREA 6: Implementar Repositorios SQLite (0%)**
+- [ ] **6.1 Crear Repositorio Base**
+- [ ] **6.2 Crear SqliteInvoiceRepository**
+- [ ] **6.3 Crear SqliteHashChainRepository**
+- [ ] **6.4 Crear SqliteSeriesLockRepository**
+
+#### ⏳ **TAREA 7: Crear Migraciones Iniciales (0%)**
+- [ ] **7.1 Configurar Herramientas EF**
+- [ ] **7.2 Crear Migración Inicial**
+- [ ] **7.3 Probar Migración**
+
+#### ⏳ **TAREA 8: Crear Tests Unitarios (0%)**
+- [ ] **8.1 Crear Proyecto de Tests**
+- [ ] **8.2 Crear Tests de Repositorio Base**
+- [ ] **8.3 Crear Tests de InvoiceRepository**
+- [ ] **8.4 Crear Tests de HashChainRepository**
+- [ ] **8.5 Crear Tests de SeriesLockRepository**
+
+#### ⏳ **TAREA 9: Documentación (0%)**
+- [ ] **9.1 Documentar Interfaces**
+- [ ] **9.2 Documentar Entidades**
+- [ ] **9.3 Documentar Repositorios**
+- [ ] **9.4 Crear README**
+
+#### ⏳ **TAREA 10: Crear Pull Request (0%)**
+- [ ] **10.1 Preparar Cambios**
+- [ ] **10.2 Crear Commit**
+- [ ] **10.3 Push y Pull Request**
+
+### 🎯 Próximos Pasos Inmediatos
+
+1. **Continuar con TAREA 4**: Configurar Entity Framework Core
+2. **Crear DbContext Base** con todas las entidades
+3. **Implementar configuraciones** para índices y relaciones
+4. **Crear proyecto SQLite** específico
+
+### 📁 Estructura Actual del Proyecto
+
+```
+NioxVF.Persistence/
+├── Interfaces/
+│   ├── IRepository.cs ✅
+│   ├── IInvoiceRepository.cs ✅
+│   ├── IHashChainRepository.cs ✅
+│   └── ISeriesLockRepository.cs ✅
+├── Entities/
+│   ├── Base/
+│   │   └── AuditEntity.cs ✅
+│   ├── InvoiceEntity.cs ✅
+│   ├── TaxItemEntity.cs ✅
+│   ├── HashChainEntity.cs ✅
+│   └── SeriesLockEntity.cs ✅
+├── Services/ (vacío - pendiente)
+└── NioxVF.Persistence.csproj ✅
+```
 
 ### ✅ NioxVF.Signing (Placeholder Implementado)
 
@@ -455,8 +634,9 @@ INFO: QR generated at C:\NioxVF\qr\A00001.png
 
 - **Proyecto**: NioxVF - Conector Veri*Factu
 - **Contacto**: José Condolo (NIOXTEC)  
-- **Estado**: Sprint 1 Completado ✅
-- **Próximo milestone**: Sprint 2 - XML F1 + Persistencia
+- **Estado**: Sprint 2 En Desarrollo (30%) 🚀
+- **Responsable actual**: Angel - Backend & Persistencia
+- **Próximo milestone**: Completar persistencia SQLite
 
 ---
 
