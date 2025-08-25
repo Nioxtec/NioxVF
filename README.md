@@ -11,8 +11,10 @@
 ## ⚠️ Requisitos del Sistema
 
 ### **Versión de .NET Requerida**
-- **.NET 8.0.0** (exactamente esta versión)
-- No compatible con .NET 9.x ni versiones anteriores
+- **.NET 8.0.0** (versión unificada para todo el proyecto)
+- ✅ **Unificación completada**: Todos los proyectos usan .NET 8.0.0
+- ✅ **Compatibilidad**: Entity Framework Core 8.0.0
+- ✅ **Herramientas**: dotnet-ef 8.0.0
 - Verificar instalación: `dotnet --version`
 
 ## 📊 Estado Actual del Desarrollo
@@ -21,7 +23,7 @@
 
 El proyecto tiene implementado completamente el Sprint 1 según la especificación funcional original. **La solución compila sin errores** y está lista para producir un MVP funcional.
 
-### 🚀 EN DESARROLLO - Sprint 2 (60%)
+### 🚀 EN DESARROLLO - Sprint 2 (80%)
 
 **Persistencia SQLite y Control de Concurrencia** - Actualmente en desarrollo por Angel (Backend & Persistencia).
 
@@ -31,7 +33,9 @@ El proyecto tiene implementado completamente el Sprint 1 según la especificaci�
 - ✅ **NioxVF.Persistence.Sqlite**: Proyecto creado y base implementado (100%)
 - ✅ **Repositorios específicos**: Implementados y verificados (100%)
 - ✅ **Control de concurrencia**: SeriesLockRepository implementado (100%)
-- ⏳ **Migraciones**: Pendiente de implementación (0%)
+- ✅ **Migraciones**: Implementadas y funcionando (100%)
+- ✅ **Tests unitarios**: 37 tests pasando (100%)
+- ✅ **Unificación .NET 8.0**: Completada (100%)
 
 ### 🏗️ Arquitectura Implementada
 
@@ -241,17 +245,36 @@ El proyecto tiene implementado completamente el Sprint 1 según la especificaci�
   - ✅ Locks con timeout configurable
   - ✅ Limpieza automática de locks expirados
 
-#### ⏳ **TAREA 7: Crear Migraciones Iniciales (0%)**
-- [ ] **7.1 Configurar Herramientas EF**
-- [ ] **7.2 Crear Migración Inicial**
-- [ ] **7.3 Probar Migración**
+#### ✅ **TAREA 7: Crear Migraciones Iniciales (100%)**
+- ✅ **7.1 Configurar Herramientas EF**
+  - ✅ dotnet-ef 8.0.0 instalado y configurado
+  - ✅ Entity Framework Core 8.0.0 unificado
+  - ✅ Herramientas funcionando sin cambios de PATH
+- ✅ **7.2 Crear Migración Inicial**
+  - ✅ Migración `20250825214755_InitialCreate` creada
+  - ✅ Tabla `AuditEntity` con TPH (Table-Per-Hierarchy)
+  - ✅ Índices y constraints configurados
+- ✅ **7.3 Probar Migración**
+  - ✅ Base de datos `NioxVF.db` creada exitosamente
+  - ✅ Tablas y esquema verificados
+  - ✅ Migración aplicada correctamente
 
-#### ⏳ **TAREA 8: Crear Tests Unitarios (0%)**
-- [ ] **8.1 Crear Proyecto de Tests**
-- [ ] **8.2 Crear Tests de Repositorio Base**
-- [ ] **8.3 Crear Tests de InvoiceRepository**
-- [ ] **8.4 Crear Tests de HashChainRepository**
-- [ ] **8.5 Crear Tests de SeriesLockRepository**
+#### ✅ **TAREA 8: Crear Tests Unitarios (100%)**
+- ✅ **8.1 Crear Proyecto de Tests**
+  - ✅ NioxVF.Persistence.Tests creado con .NET 8.0
+  - ✅ Dependencias configuradas (xUnit, Moq, EF InMemory)
+- ✅ **8.2 Crear Tests de Repositorio Base**
+  - ✅ SqliteRepositoryTests: 11 tests pasando
+  - ✅ Métodos CRUD básicos verificados
+- ✅ **8.3 Crear Tests de InvoiceRepository**
+  - ✅ SqliteInvoiceRepositoryTests: 7 tests pasando
+  - ✅ Búsquedas específicas verificadas
+- ✅ **8.4 Crear Tests de HashChainRepository**
+  - ✅ SqliteHashChainRepositoryTests: 8 tests pasando
+  - ✅ Operaciones de cadena verificadas
+- ✅ **8.5 Crear Tests de SeriesLockRepository**
+  - ✅ SqliteSeriesLockRepositoryTests: 10 tests pasando
+  - ✅ Control de concurrencia verificado
 
 #### ⏳ **TAREA 9: Documentación (0%)**
 - [ ] **9.1 Documentar Interfaces**
@@ -266,10 +289,10 @@ El proyecto tiene implementado completamente el Sprint 1 según la especificaci�
 
 ### 🎯 Próximos Pasos Inmediatos
 
-1. **Continuar con TAREA 7**: Crear Migraciones Iniciales
-2. **Configurar herramientas EF** para SQLite
-3. **Crear migración inicial** con todas las entidades
-4. **Probar migración** en base de datos real
+1. **Continuar con TAREA 9**: Documentación
+2. **Completar TAREA 10**: Crear Pull Request
+3. **Integrar con NioxVF.Api**: Configurar DI y servicios
+4. **Testing end-to-end**: Verificar integración completa
 
 ### 📁 Estructura Actual del Proyecto
 
@@ -318,16 +341,33 @@ NioxVF.Persistence/
 - ✅ DbContext base implementado
 - ✅ Proyecto SQLite creado
 - ✅ Repositorios específicos implementados
-- ✅ Tests temporales completados exitosamente
-- ⚠️ **Pendiente Sprint 2**: Migraciones y tests unitarios formales
+- ✅ **Migraciones**: Implementadas y funcionando (100%)
+- ✅ **Tests unitarios**: 37 tests pasando (100%)
+- ✅ **Unificación .NET 8.0**: Completada (100%)
+- ✅ **Base de datos**: SQLite configurada y operativa
 
 ## 🚀 Instalación y Configuración
 
 ### Prerrequisitos
 
-- ✅ .NET 8 SDK
+- ✅ .NET 8 SDK (versión unificada)
 - ✅ Visual Studio 2022 o VS Code
 - ✅ Git
+
+### ✅ **Cambios Importantes - Unificación .NET 8.0**
+
+**Todos los proyectos han sido unificados a .NET 8.0.0 para evitar conflictos de versiones:**
+
+- ✅ **NioxVF.Api**: `net8.0` (sin cambios)
+- ✅ **NioxVF.Persistence.Tests**: `net9.0` → `net8.0` (unificado)
+- ✅ **Entity Framework Core**: `9.0.8` → `8.0.0` (unificado)
+- ✅ **dotnet-ef tools**: `9.0.8` → `8.0.0` (unificado)
+
+**Beneficios:**
+- 🎯 **Consistencia**: Todo el proyecto usa .NET 8.0
+- 🔧 **Simplicidad**: No más cambios de PATH
+- ⚡ **Rendimiento**: Mejor compatibilidad entre componentes
+- 🛠️ **Mantenimiento**: Más fácil de mantener y actualizar
 
 ### 1. Clonar y Compilar
 
@@ -503,14 +543,17 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
 
 ## 🔄 Roadmap de Desarrollo
 
-### 🔄 Sprint 2 - Persistencia SQLite (EN DESARROLLO)
+### 🔄 Sprint 2 - Persistencia SQLite (80% COMPLETADO)
 **Objetivo**: Implementar persistencia real con SQLite
 
-- [x] **HashChain persistente** (Implementación completa)
-  - [x] SQLite para Agent (proyecto creado)
-  - [x] Entity Framework Core configurado
-  - [x] Repositorios específicos implementados
-  - [x] Control de concurrencia por serie
+- ✅ **HashChain persistente** (Implementación completa)
+  - ✅ SQLite para Agent (proyecto creado)
+  - ✅ Entity Framework Core configurado
+  - ✅ Repositorios específicos implementados
+  - ✅ Control de concurrencia por serie
+  - ✅ **Migraciones**: Implementadas y funcionando
+  - ✅ **Tests unitarios**: 37 tests pasando
+  - ✅ **Unificación .NET 8.0**: Completada
 - [ ] **Generación XML F1**
   - [ ] Serializer conforme a esquema Veri*Factu
   - [ ] Validación de estructura XML
@@ -533,9 +576,9 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
 
 ### 📅 Sprint 5 - Persistencia Completa
 - [ ] EF Core + PostgreSQL para API
-- [x] SQLite para Agent (base implementada)
+- ✅ SQLite para Agent (implementación completa)
 - [ ] Esquema multi-tenant
-- [ ] Migraciones automáticas
+- ✅ Migraciones automáticas (SQLite implementado)
  ### 📅 Sprint 6 - QR real + Integración Aronium
 - [ ] QRCoder (PNG) con payload oficial
 - [ ] Plantilla de ticket Aronium con imagen QR
@@ -569,6 +612,9 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
 - ✅ **Encadenado**: Cálculo de hash correcto
 - ✅ **Autenticación**: API Keys funcionando
 - ✅ **File processing**: JSON inbox completo
+- ✅ **Tests unitarios**: 37 tests pasando (100%)
+- ✅ **Migraciones**: Base de datos creada correctamente
+- ✅ **Unificación .NET 8.0**: Funcionando sin cambios de PATH
 
 ### 📝 Tests Pendientes
 
@@ -656,9 +702,9 @@ INFO: QR generated at C:\NioxVF\qr\A00001.png
 
 - **Proyecto**: NioxVF - Conector Veri*Factu
 - **Contacto**: José Condolo (NIOXTEC)  
-- **Estado**: Sprint 2 En Desarrollo (60%) 🚀
+- **Estado**: Sprint 2 En Desarrollo (80%) 🚀
 - **Responsable actual**: Angel - Backend & Persistencia
-- **Próximo milestone**: Crear migraciones iniciales SQLite
+- **Próximo milestone**: Documentación y Pull Request
 
 ---
 

@@ -19,7 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NioxVF.Persistence", "NioxV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NioxVF.Persistence.Sqlite", "NioxVF.Persistence.Sqlite\NioxVF.Persistence.Sqlite.csproj", "{5B391BD0-625D-45BD-BDC4-6B9DF76ED0F7}"
 EndProject
-
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NioxVF.Persistence.Tests", "NioxVF.Persistence.Tests\NioxVF.Persistence.Tests.csproj", "{2C49A439-9651-4DEE-A364-18E73B99DA92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,7 +127,18 @@ Global
 		{5B391BD0-625D-45BD-BDC4-6B9DF76ED0F7}.Release|x64.Build.0 = Release|Any CPU
 		{5B391BD0-625D-45BD-BDC4-6B9DF76ED0F7}.Release|x86.ActiveCfg = Release|Any CPU
 		{5B391BD0-625D-45BD-BDC4-6B9DF76ED0F7}.Release|x86.Build.0 = Release|Any CPU
-
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Debug|x64.Build.0 = Debug|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Debug|x86.Build.0 = Debug|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Release|x64.ActiveCfg = Release|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Release|x64.Build.0 = Release|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Release|x86.ActiveCfg = Release|Any CPU
+		{2C49A439-9651-4DEE-A364-18E73B99DA92}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

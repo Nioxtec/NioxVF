@@ -1,7 +1,9 @@
+using Microsoft.EntityFrameworkCore;
 using NioxVF.Api.Middleware;
 using NioxVF.Api.Services;
 using NioxVF.Domain.Interfaces;
 using NioxVF.Domain.Services;
+using NioxVF.Persistence.Sqlite.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,10 @@ builder.Services.AddSwaggerGen(c =>
 // Register domain services
 builder.Services.AddSingleton<IHashChain, HashChainService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
+
+// Add Entity Framework Core with SQLite
+builder.Services.AddDbContext<SqliteDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add logging
 builder.Services.AddLogging(config =>
