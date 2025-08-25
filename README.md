@@ -21,14 +21,16 @@
 
 El proyecto tiene implementado completamente el Sprint 1 según la especificación funcional original. **La solución compila sin errores** y está lista para producir un MVP funcional.
 
-### 🚀 EN DESARROLLO - Sprint 2 (30%)
+### 🚀 EN DESARROLLO - Sprint 2 (60%)
 
 **Persistencia SQLite y Control de Concurrencia** - Actualmente en desarrollo por Angel (Backend & Persistencia).
 
 **Progreso actual:**
 - ✅ **NioxVF.Persistence**: Interfaces y entidades completadas (100%)
-- ⏳ **NioxVF.Persistence.Sqlite**: Pendiente de implementación (0%)
-- ⏳ **Control de concurrencia**: Pendiente de implementación (0%)
+- ✅ **Entity Framework Core**: Configurado y DbContext implementado (100%)
+- ✅ **NioxVF.Persistence.Sqlite**: Proyecto creado y base implementado (100%)
+- ✅ **Repositorios específicos**: Implementados y verificados (100%)
+- ✅ **Control de concurrencia**: SeriesLockRepository implementado (100%)
 - ⏳ **Migraciones**: Pendiente de implementación (0%)
 
 ### 🏗️ Arquitectura Implementada
@@ -124,14 +126,14 @@ El proyecto tiene implementado completamente el Sprint 1 según la especificaci�
 **Estado:** En desarrollo - Rama `feature/sqlite-repository`  
 **Responsable:** Angel - Backend & Persistencia  
 **Fecha inicio:** Diciembre 2024  
-**Progreso actual:** 3/10 tareas completadas (30%)
+**Progreso actual:** 6/10 tareas completadas (60%)
 
 ### ✅ TAREAS COMPLETADAS
 
 #### ✅ **TAREA 1: Configurar NioxVF.Persistence (100%)**
 - ✅ **1.1 Configurar Dependencias del Proyecto**
   - ✅ Agregar referencia a NioxVF.Domain
-  - ✅ Agregar Entity Framework Core 9.0.8
+  - ✅ Agregar Entity Framework Core 8.0.0
   - ✅ Agregar Entity Framework Core Tools
   - ✅ Agregar Entity Framework Core Design
 
@@ -195,37 +197,49 @@ El proyecto tiene implementado completamente el Sprint 1 según la especificaci�
   - ✅ Propiedades para control de concurrencia: SellerNif, Series, LockId, AcquiredAt, ExpiresAt, IsActive
   - ✅ Documentación XML completa
 
-### ⏳ TAREAS PENDIENTES
+### ✅ TAREAS COMPLETADAS (CONTINUACIÓN)
 
-#### ⏳ **TAREA 4: Configurar Entity Framework Core (0%)**
-- [ ] **4.1 Crear DbContext Base**
-  - [ ] Crear archivo `NioxVF.Persistence/Context/NioxVFDbContext.cs`
-  - [ ] Definir DbSets para todas las entidades
-  - [ ] Configurar OnModelCreating
-  - [ ] Configurar OnConfiguring para logging
+#### ✅ **TAREA 4: Configurar Entity Framework Core (100%)**
+- ✅ **4.1 Crear DbContext Base**
+  - ✅ Crear archivo `NioxVF.Persistence/Context/NioxVFDbContext.cs`
+  - ✅ Definir DbSets para todas las entidades
+  - ✅ Configurar OnModelCreating
+  - ✅ Configurar OnConfiguring para logging
 
-- [ ] **4.2 Crear Configuraciones de Entidades**
-  - [ ] InvoiceEntityConfiguration
-  - [ ] TaxItemEntityConfiguration
-  - [ ] HashChainEntityConfiguration
-  - [ ] SeriesLockEntityConfiguration
+- ✅ **4.2 Crear Configuraciones de Entidades**
+  - ✅ InvoiceEntityConfiguration
+  - ✅ TaxItemEntityConfiguration
+  - ✅ HashChainEntityConfiguration
+  - ✅ SeriesLockEntityConfiguration
 
-#### ⏳ **TAREA 5: Crear Proyecto NioxVF.Persistence.Sqlite (0%)**
-- [ ] **5.1 Crear Proyecto SQLite**
-  - [ ] Crear directorio `NioxVF.Persistence.Sqlite/`
-  - [ ] Crear archivo `NioxVF.Persistence.Sqlite.csproj`
-  - [ ] Configurar dependencias SQLite
+#### ✅ **TAREA 5: Crear Proyecto NioxVF.Persistence.Sqlite (100%)**
+- ✅ **5.1 Crear Proyecto SQLite**
+  - ✅ Crear directorio `NioxVF.Persistence.Sqlite/`
+  - ✅ Crear archivo `NioxVF.Persistence.Sqlite.csproj`
+  - ✅ Configurar dependencias SQLite
 
-- [ ] **5.2 Crear SqliteDbContext**
-  - [ ] Heredar de NioxVFDbContext
-  - [ ] Configurar OnConfiguring para SQLite
-  - [ ] Configurar cadena de conexión
+- ✅ **5.2 Crear SqliteDbContext**
+  - ✅ Heredar de NioxVFDbContext
+  - ✅ Configurar OnConfiguring para SQLite
+  - ✅ Configurar cadena de conexión
 
-#### ⏳ **TAREA 6: Implementar Repositorios SQLite (0%)**
-- [ ] **6.1 Crear Repositorio Base**
-- [ ] **6.2 Crear SqliteInvoiceRepository**
-- [ ] **6.3 Crear SqliteHashChainRepository**
-- [ ] **6.4 Crear SqliteSeriesLockRepository**
+#### ✅ **TAREA 6: Implementar Repositorios SQLite (100%)**
+- ✅ **6.1 Crear Repositorio Base**
+  - ✅ SqliteRepository<T> implementado
+  - ✅ Métodos CRUD básicos funcionando
+  - ✅ Manejo de excepciones y logging
+- ✅ **6.2 Crear SqliteInvoiceRepository**
+  - ✅ Gestión completa de facturas
+  - ✅ Búsquedas por serie/número
+  - ✅ Inclusión automática de TaxItems
+- ✅ **6.3 Crear SqliteHashChainRepository**
+  - ✅ Cadena criptográfica implementada
+  - ✅ Operaciones atómicas con transacciones
+  - ✅ Gestión de hashes por vendedor/serie
+- ✅ **6.4 Crear SqliteSeriesLockRepository**
+  - ✅ Control de concurrencia robusto
+  - ✅ Locks con timeout configurable
+  - ✅ Limpieza automática de locks expirados
 
 #### ⏳ **TAREA 7: Crear Migraciones Iniciales (0%)**
 - [ ] **7.1 Configurar Herramientas EF**
@@ -252,10 +266,10 @@ El proyecto tiene implementado completamente el Sprint 1 según la especificaci�
 
 ### 🎯 Próximos Pasos Inmediatos
 
-1. **Continuar con TAREA 4**: Configurar Entity Framework Core
-2. **Crear DbContext Base** con todas las entidades
-3. **Implementar configuraciones** para índices y relaciones
-4. **Crear proyecto SQLite** específico
+1. **Continuar con TAREA 7**: Crear Migraciones Iniciales
+2. **Configurar herramientas EF** para SQLite
+3. **Crear migración inicial** con todas las entidades
+4. **Probar migración** en base de datos real
 
 ### 📁 Estructura Actual del Proyecto
 
@@ -295,10 +309,17 @@ NioxVF.Persistence/
 - ✅ `QrGenerator` - Generador PNG placeholder
 - ⚠️ **Pendiente Sprint 6**: Integración con QRCoder real
 
-### ✅ NioxVF.Persistence (Estructura Creada)
+### ✅ NioxVF.Persistence (Implementación Completa)
 
 - ✅ Proyecto creado y configurado
-- ⚠️ **Pendiente Sprint 5**: Implementación EF Core + PostgreSQL
+- ✅ Interfaces de repositorio implementadas
+- ✅ Entidades de dominio creadas
+- ✅ Entity Framework Core configurado
+- ✅ DbContext base implementado
+- ✅ Proyecto SQLite creado
+- ✅ Repositorios específicos implementados
+- ✅ Tests temporales completados exitosamente
+- ⚠️ **Pendiente Sprint 2**: Migraciones y tests unitarios formales
 
 ## 🚀 Instalación y Configuración
 
@@ -467,7 +488,7 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
 | **XAdES Signer** | Placeholder XML | Sprint 3 - Firma real |
 | **AEAT Transport** | Respuestas simuladas | Sprint 4 - SOAP+mTLS real |
 | **QR Generator** | PNG simulado | Sprint 6 - QRCoder real |
-| **Persistence** | In-memory | Sprint 5 - PostgreSQL + SQLite |
+| **Persistence** | Implementación completa | Sprint 2 - Migraciones y tests |
 
 ### ❌ Pendiente de Implementar
 
@@ -482,13 +503,14 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
 
 ## 🔄 Roadmap de Desarrollo
 
-### 🔄 Sprint 2 - Encadenado + XML (SIGUIENTE)
-**Objetivo**: Persistencia real y XML válido
+### 🔄 Sprint 2 - Persistencia SQLite (EN DESARROLLO)
+**Objetivo**: Implementar persistencia real con SQLite
 
-- [ ] **HashChain persistente**
-  - [ ] SQLite para Agent
-  - [ ] PostgreSQL para API  
-  - [ ] Control de concurrencia por serie
+- [x] **HashChain persistente** (Implementación completa)
+  - [x] SQLite para Agent (proyecto creado)
+  - [x] Entity Framework Core configurado
+  - [x] Repositorios específicos implementados
+  - [x] Control de concurrencia por serie
 - [ ] **Generación XML F1**
   - [ ] Serializer conforme a esquema Veri*Factu
   - [ ] Validación de estructura XML
@@ -511,7 +533,7 @@ curl -H "X-API-Key: dev-123" http://localhost:5180/api/v1/invoices/[guid]
 
 ### 📅 Sprint 5 - Persistencia Completa
 - [ ] EF Core + PostgreSQL para API
-- [ ] SQLite para Agent
+- [x] SQLite para Agent (base implementada)
 - [ ] Esquema multi-tenant
 - [ ] Migraciones automáticas
  ### 📅 Sprint 6 - QR real + Integración Aronium
@@ -634,9 +656,9 @@ INFO: QR generated at C:\NioxVF\qr\A00001.png
 
 - **Proyecto**: NioxVF - Conector Veri*Factu
 - **Contacto**: José Condolo (NIOXTEC)  
-- **Estado**: Sprint 2 En Desarrollo (30%) 🚀
+- **Estado**: Sprint 2 En Desarrollo (60%) 🚀
 - **Responsable actual**: Angel - Backend & Persistencia
-- **Próximo milestone**: Completar persistencia SQLite
+- **Próximo milestone**: Crear migraciones iniciales SQLite
 
 ---
 
