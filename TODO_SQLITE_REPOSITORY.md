@@ -279,49 +279,49 @@
 
 ---
 
-## 🧪 **TAREA 8: Crear Tests Unitarios**
+## 🧪 **TAREA 8: Crear Tests Unitarios (COMPLETADA)**
 
 ### **8.1 Crear Proyecto de Tests**
-- [ ] **Crear directorio `NioxVF.Persistence.Tests/`**
-- [ ] **Crear archivo `NioxVF.Persistence.Tests.csproj`**
-- [ ] **Configurar dependencias:**
-  - [ ] Referencia a NioxVF.Persistence
-  - [ ] Package Microsoft.EntityFrameworkCore.InMemory
-  - [ ] Package xUnit
-  - [ ] Package Moq
+- ✅ **Crear directorio `NioxVF.Persistence.Tests/`**
+- ✅ **Crear archivo `NioxVF.Persistence.Tests.csproj`**
+- ✅ **Configurar dependencias:**
+  - ✅ Referencia a NioxVF.Persistence
+  - ✅ Package Microsoft.EntityFrameworkCore.InMemory
+  - ✅ Package xUnit
+  - ✅ Package Moq
 
 ### **8.2 Crear Tests de Repositorio Base**
-- [ ] **Crear archivo `NioxVF.Persistence.Tests/Repositories/Base/SqliteRepositoryTests.cs`**
-- [ ] **Testear métodos CRUD básicos:**
-  - [ ] GetByIdAsync
-  - [ ] GetAllAsync
-  - [ ] AddAsync
-  - [ ] UpdateAsync
-  - [ ] DeleteAsync
-  - [ ] ExistsAsync
+- ✅ **Crear archivo `NioxVF.Persistence.Tests/Repositories/Base/SqliteRepositoryTests.cs`**
+- ✅ **Testear métodos CRUD básicos:**
+  - ✅ GetByIdAsync
+  - ✅ GetAllAsync
+  - ✅ AddAsync
+  - ✅ UpdateAsync
+  - ✅ DeleteAsync
+  - ✅ ExistsAsync
 
 ### **8.3 Crear Tests de InvoiceRepository**
-- [ ] **Crear archivo `NioxVF.Persistence.Tests/Repositories/SqliteInvoiceRepositoryTests.cs`**
-- [ ] **Testear métodos específicos:**
-  - [ ] GetBySeriesAndNumberAsync
-  - [ ] GetBySellerAsync
-  - [ ] GetByDateRangeAsync
-  - [ ] GetLastNumberInSeriesAsync
+- ✅ **Crear archivo `NioxVF.Persistence.Tests/Repositories/SqliteInvoiceRepositoryTests.cs`**
+- ✅ **Testear métodos específicos:**
+  - ✅ GetBySeriesAndNumberAsync
+  - ✅ GetBySellerAsync
+  - ✅ GetByDateRangeAsync
+  - ✅ GetLastNumberInSeriesAsync
 
 ### **8.4 Crear Tests de HashChainRepository**
-- [ ] **Crear archivo `NioxVF.Persistence.Tests/Repositories/SqliteHashChainRepositoryTests.cs`**
-- [ ] **Testear métodos específicos:**
-  - [ ] GetPreviousHashAsync
-  - [ ] UpdateChainAsync
-  - [ ] GetChainBySellerAsync
+- ✅ **Crear archivo `NioxVF.Persistence.Tests/Repositories/SqliteHashChainRepositoryTests.cs`**
+- ✅ **Testear métodos específicos:**
+  - ✅ GetPreviousHashAsync
+  - ✅ UpdateChainAsync
+  - ✅ GetChainBySellerAsync
 
 ### **8.5 Crear Tests de SeriesLockRepository**
-- [ ] **Crear archivo `NioxVF.Persistence.Tests/Repositories/SqliteSeriesLockRepositoryTests.cs`**
-- [ ] **Testear métodos específicos:**
-  - [ ] TryAcquireLockAsync
-  - [ ] ReleaseLockAsync
-  - [ ] IsLockedAsync
-  - [ ] CleanupExpiredLocksAsync
+- ✅ **Crear archivo `NioxVF.Persistence.Tests/Repositories/SqliteSeriesLockRepositoryTests.cs`**
+- ✅ **Testear métodos específicos:**
+  - ✅ TryAcquireLockAsync
+  - ✅ ReleaseLockAsync
+  - ✅ IsLockedAsync
+  - ✅ CleanupExpiredLocksAsync
 
 ---
 
