@@ -23,7 +23,7 @@
 
 El proyecto tiene implementado completamente el Sprint 1 según la especificación funcional original. **La solución compila sin errores** y está lista para producir un MVP funcional.
 
-### 🚀 EN DESARROLLO - Sprint 2 (80%)
+### 🚀 EN DESARROLLO - Sprint 2 (90%)
 
 **Persistencia SQLite y Control de Concurrencia** - Actualmente en desarrollo por Angel (Backend & Persistencia).
 
@@ -36,6 +36,7 @@ El proyecto tiene implementado completamente el Sprint 1 según la especificaci�
 - ✅ **Migraciones**: Implementadas y funcionando (100%)
 - ✅ **Tests unitarios**: 37 tests pasando (100%)
 - ✅ **Unificación .NET 8.0**: Completada (100%)
+- ✅ **Documentación**: Completa y profesional (100%)
 
 ### 🏗️ Arquitectura Implementada
 
@@ -334,17 +335,41 @@ NioxVF.Persistence/
 
 ### ✅ NioxVF.Persistence (Implementación Completa)
 
-- ✅ Proyecto creado y configurado
-- ✅ Interfaces de repositorio implementadas
-- ✅ Entidades de dominio creadas
-- ✅ Entity Framework Core configurado
-- ✅ DbContext base implementado
-- ✅ Proyecto SQLite creado
-- ✅ Repositorios específicos implementados
-- ✅ **Migraciones**: Implementadas y funcionando (100%)
-- ✅ **Tests unitarios**: 37 tests pasando (100%)
-- ✅ **Unificación .NET 8.0**: Completada (100%)
-- ✅ **Base de datos**: SQLite configurada y operativa
+**Capa de persistencia completamente implementada con SQLite y Entity Framework Core 8.0**
+
+#### **🏗️ Arquitectura de Persistencia**
+- ✅ **Interfaces de repositorio**: 4 interfaces definidas con documentación XML completa
+- ✅ **Entidades de dominio**: 5 entidades con auditoría automática
+- ✅ **Entity Framework Core**: Configurado con TPH (Table-Per-Hierarchy)
+- ✅ **DbContext**: NioxVFDbContext base + SqliteDbContext específico
+- ✅ **Repositorios SQLite**: 3 implementaciones específicas completas
+- ✅ **Migraciones**: Base de datos SQLite creada y funcionando
+- ✅ **Tests unitarios**: 37 tests pasando (100% cobertura)
+- ✅ **Unificación .NET 8.0**: Todos los proyectos alineados
+
+#### **📦 Repositorios Implementados**
+- **`SqliteInvoiceRepository`**: Gestión completa de facturas con navegación automática
+- **`SqliteHashChainRepository`**: Cadena criptográfica con operaciones atómicas
+- **`SqliteSeriesLockRepository`**: Control de concurrencia con cleanup automático
+
+#### **🗄️ Base de Datos SQLite**
+- **Archivo**: `NioxVF.Api/NioxVF.db` (28KB)
+- **Esquema**: TPH (Table-Per-Hierarchy) con tabla `AuditEntity`
+- **Migración**: `20250825214755_InitialCreate` aplicada
+- **Índices**: Optimizados para consultas frecuentes
+- **Constraints**: Claves foráneas con cascade delete
+
+#### **🧪 Testing y Calidad**
+- **Framework**: xUnit + Moq + EF In-Memory
+- **Cobertura**: 37 tests unitarios (100% pasando)
+- **Aislamiento**: Base de datos en memoria por test
+- **Performance**: Ejecución < 2 segundos
+
+#### **📚 Documentación Técnica**
+- **README principal**: `NioxVF.Persistence/README.md`
+- **README SQLite**: `NioxVF.Persistence.Sqlite/README.md`
+- **README Tests**: `NioxVF.Persistence.Tests/README.md`
+- **Documentación XML**: 100% completada en interfaces y entidades
 
 ## 🚀 Instalación y Configuración
 
@@ -698,13 +723,81 @@ INFO: Processing ticket A-00001 from B00000000
 INFO: QR generated at C:\NioxVF\qr\A00001.png
 ```
 
+## 📚 Documentación Técnica
+
+### **📖 Documentación por Proyecto**
+
+#### **🏗️ NioxVF.Persistence**
+- **[README Principal](NioxVF.Persistence/README.md)** - Arquitectura, interfaces y entidades
+- **Interfaces**: 4 interfaces con documentación XML completa
+- **Entidades**: 5 entidades con auditoría automática
+- **DbContext**: Configuración base de Entity Framework
+
+#### **🗄️ NioxVF.Persistence.Sqlite**
+- **[README SQLite](NioxVF.Persistence.Sqlite/README.md)** - Implementación específica de SQLite
+- **Repositorios**: 3 implementaciones completas
+- **Migraciones**: Configuración y esquema TPH
+- **Performance**: Optimizaciones y consideraciones
+
+#### **🧪 NioxVF.Persistence.Tests**
+- **[README Tests](NioxVF.Persistence.Tests/README.md)** - Testing y calidad
+- **Framework**: xUnit + Moq + EF In-Memory
+- **Cobertura**: 37 tests unitarios (100% pasando)
+- **Debugging**: Guías y troubleshooting
+
+### **🔧 Guías de Desarrollo**
+
+#### **Configuración Rápida**
+```bash
+# Clonar y compilar
+git clone [URL_DEL_REPO] NioxVF
+cd NioxVF
+dotnet restore
+dotnet build
+
+# Ejecutar tests
+dotnet test NioxVF.Persistence.Tests
+
+# Verificar migraciones
+dotnet ef migrations list --project NioxVF.Persistence.Sqlite --startup-project NioxVF.Api
+```
+
+#### **Comandos Útiles**
+```bash
+# Compilar todo el proyecto
+dotnet build
+
+# Ejecutar tests específicos
+dotnet test NioxVF.Persistence.Tests --filter "FullyQualifiedName~SqliteInvoiceRepositoryTests"
+
+# Crear nueva migración
+dotnet ef migrations add NuevaMigracion --project NioxVF.Persistence.Sqlite --startup-project NioxVF.Api
+
+# Actualizar base de datos
+dotnet ef database update --project NioxVF.Persistence.Sqlite --startup-project NioxVF.Api
+```
+
+### **📋 Referencias Técnicas**
+
+#### **Arquitectura de Persistencia**
+- **Patrón Repository**: Separación de lógica de acceso a datos
+- **TPH (Table-Per-Hierarchy)**: Una tabla para todas las entidades
+- **Auditoría Automática**: Timestamps y tracking de usuario
+- **Soft Delete**: Eliminación lógica sin pérdida de datos
+
+#### **Tecnologías Utilizadas**
+- **Entity Framework Core 8.0**: ORM para .NET
+- **SQLite**: Base de datos ligera y portable
+- **xUnit**: Framework de testing
+- **Moq**: Mocking para tests unitarios
+
 ## 📞 Contacto
 
 - **Proyecto**: NioxVF - Conector Veri*Factu
 - **Contacto**: José Condolo (NIOXTEC)  
-- **Estado**: Sprint 2 En Desarrollo (80%) 🚀
+- **Estado**: Sprint 2 En Desarrollo (90%) 🚀
 - **Responsable actual**: Angel - Backend & Persistencia
-- **Próximo milestone**: Documentación y Pull Request
+- **Próximo milestone**: Pull Request
 
 ---
 
